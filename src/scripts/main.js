@@ -17,15 +17,11 @@ function sortList(x) {
 }
 
 function getEmployees(x) {
-  const sortedUl = document.createElement('ul');
-
-  document.body.append(sortedUl);
+  const oldUl = document.body.querySelector('ul');
 
   for (let y = 0; y < x.length; y++) {
-    sortedUl.append(x[y]);
+    oldUl.append(x[y]);
   }
-
-  document.body.querySelector('ul').remove();
 }
 
 sortList(list);
