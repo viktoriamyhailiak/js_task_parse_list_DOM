@@ -1,28 +1,26 @@
 'use strict';
 
-let list = document.getElementsByTagName('li');
+const list = Array.from(document.getElementsByTagName('li'));
 
 function sortList(x) {
-  const array = [...x];
-
-  for (const n of array) {
+  for (const n of x) {
     n.dataset.salary = +n.dataset.salary
       .split('')
       .filter((elem) => !isNaN(elem))
       .join('');
   }
 
-  array.sort((z, y) => y.dataset.salary - z.dataset.salary);
-  list = array;
+  return x.sort((z, y) => y.dataset.salary - z.dataset.salary);
 }
 
 function getEmployees(x) {
-  const oldUl = document.body.querySelector('ul');
+  const parentElement = x[0].parentElement;
 
-  for (let y = 0; y < x.length; y++) {
-    oldUl.append(x[y]);
+  for (const li of x) {
+    parentElement.append(li);
   }
 }
 
-sortList(list);
-getEmployees(list);
+const sorted = sortList(list);
+
+getEmployees(sorted);
